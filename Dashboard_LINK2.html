@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Link</title>
+ <link rel="icon" href="Imagedashboard.jpg" type="image/jpg">
+
+  <style id="theme-style">
+    /* === DEFAULT LIGHT MODE (DEFAULT) === */
+    body {
+	background-image: url('Imagedashboard.jpg'); 
+  	background-size: cover;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1 {
+      text-align: Center;
+      color: black;
+    }
+
+    input[type="text"] {
+      width: 99%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Agar bisa wrapping di layar kecil */
+  gap: 20px; /* Jarak antar card */
+}
+
+.card {
+background: white;
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, background 0.3s, box-shadow 0.3s;
+  width: calc(33.333% - 14px); /* 3 kolom dengan gap 20px */
+  box-sizing: border-box;
+}
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #3498db;
+    }
+
+    .card a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .card small {
+      display: inline-block;
+      margin-top: 8px;
+      color: #777;
+      background: #ecf0f1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .btn-open {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn-open:hover {
+      background-color: #2980b9;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+  @media (max-width: 900px) {
+  .card {
+    width: calc(50% - 10px); /* 2 kolom di tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%; /* 1 kolom penuh di HP */
+  }
+}
+
+
+    /* === TAMBAHAN DARK MODE STYLE === */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode h1 {
+      color: black;
+    }
+
+    body.dark-mode input[type="text"] {
+      background-color: #1f1f1f;
+      color: #fff;
+      border: none;
+    }
+
+    body.dark-mode input[type="text"]:focus {
+      background-color: #272727;
+      box-shadow: 0 0 5px rgba(73, 149, 255, 0.6);
+    }
+
+    body.dark-mode .card {
+      background: #1e1e1e;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    body.dark-mode .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    body.dark-mode .card h3,
+    body.dark-mode .card a {
+      color: #7abaff;
+    }
+
+    body.dark-mode .card small {
+      background: #2a2a2a;
+      color: #b0b0b0;
+    }
+
+    body.dark-mode .btn-open {
+      background-color: #3498db;
+    }
+
+    body.dark-mode .btn-open:hover {
+      background-color: #2980b9;
+    }
+
+    body.dark-mode .toggle-btn {
+      background-color: #7abaff;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+  <h1>Dashboard Link</h1>
+  <input type="text" id="search" placeholder="Cari link..." onkeyup="filterLinks()">
+
+  <div id="links"></div>
+
+  <script>
+    const links = [
+      {
+        judul: "MONIMANAGER",
+        url: "https://10.14.56.101:18080/",
+        deskripsi: "MONIMANAGER."
+      },
+      {
+        judul: "LOG PROBLEM",
+        url: "http://10.14.157.57/problem_log_atm+/main/?pages=dashboard",
+        deskripsi: "log Problem."
+      },
+      {
+        judul: "PROGNOSIS",
+        url: "https://10.14.52.24/Prognosis/",
+        deskripsi: "PROGNOSIS."
+      },
+       {
+        judul: "AMS",
+        url: "https://brinks-east.cloudexa.com/",
+        deskripsi: "Pemantaun AMS."
+      },
+       {
+        judul: "Problem Update",
+        url: "http://10.14.157.57/dashboard-management/",
+        deskripsi: "Pemantauan Problem Update."
+      },
+      {
+        judul: "Back Office",
+        url: "http://10.14.49.46/atmplus",
+        deskripsi: "Back Office ATM+."
+      },
+	{
+        judul: "MYDATINDO",
+        url: "https://mydatindo.com/dashboard.php",
+        deskripsi: "Open Tiket Datindo."
+      },
+	{
+        judul: "Outlook",
+        url: "https://outlook.office.com/mail",
+        deskripsi: "Email Outlook."
+      },
+	{
+        judul: "MITRAKOM",
+        url: "https://pantau.thinkm.id/login",
+        deskripsi: "Jarkom Mitrakom."
+      },
+	{
+        judul: "Labitran",
+        url: "https://app.strim.co.id/Solid/pages/indexLogin.zul",
+        deskripsi: "Kebersihan Labitran."
+      },
+	{
+        judul: "CSNA",
+        url: "https://paxstorenewdownload.csna4u.com:8083/atm_aj_new/login.php",
+        deskripsi: "Kebersihan CSNA."
+      },
+	{
+        judul: "ARG",
+        url: "https://silaks.com/index.php",
+        deskripsi: "Kebersihan ARG."
+      },
+    ];
+
+   function renderLinks(data) {
+  const container = document.getElementById("links");
+  container.innerHTML = `
+    <div class="card-container">
+      ${data.map(item => `
+        <div class="card">
+          <h3><a href="${item.url}" target="_blank">${item.judul}</a></h3>
+          <p>${item.deskripsi}</p>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+    function filterLinks() {
+      const query = document.getElementById("search").value.toLowerCase();
+      const filtered = links.filter(link =>
+        link.judul.toLowerCase().includes(query) ||
+        link.deskripsi.toLowerCase().includes(query)
+      );
+      renderLinks(filtered);
+    }
+
+    // Toggle Theme Function
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+      // Update icon button
+      document.querySelector('.toggle-btn').innerHTML = isDark ? '☀️' : '🌙';
+    }
+
+    // Load theme from localStorage
+    window.onload = () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.toggle-btn').innerHTML = '☀️';
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.querySelector('.toggle-btn').innerHTML = '🌙';
+      }
+
+      renderLinks(links); // Render after loading theme
+    };
+  </script>
+
+</body>
+</html>
